@@ -1,0 +1,67 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md 6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Available Products
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of products">
+              <td>{{p.title}}</td>
+              <td>{{p.description}}</td>
+              <td>{{p.price | number}}</td>
+              <td><button type="button" class="btn btn-sm btn-primary" (click)="addToCart(p);"><i class="fa fa-cart-plus"> </i></button></td>
+            </tr>
+            <tr *ngIf="products && products.length === 0">
+              <td colspan="4" class="text-justify">No products</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Shopping Cart</strong>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Product</th>
+              <th>Number</th>
+              <th>Total Price</th>
+              <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of cartItems">
+              <td>{{p.product}}</td>
+              <td>{{p.noOfProduct}}</td>
+              <td>{{p.totalPrice | number}}</td>
+              <td><button type="button" class="btn btn-sm btn-primary" (click)="removeOneItemFromCart(p);"
+                          tooltip="remove one"><i class="fa fa-minus"> </i></button></td>
+              <td><button type="button" class="btn btn-sm btn-primary" (click)="removeAllSpecificItemsFromCart(p);"
+                          tooltip="remove all"><i class="fa fa-remove"> </i></button></td>
+            </tr>
+            <tr *ngIf="cartItems && cartItems.length === 0">
+              <td colspan="5" class="text-justify">Cart empty!</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>
